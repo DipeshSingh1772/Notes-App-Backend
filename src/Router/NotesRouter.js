@@ -49,5 +49,14 @@ router.delete('/DeleteAllNotes', async(req,res)=>{
 
 })
 
+router.patch('/updateNotes', async(req,res)=>{
+    try{
+        const notes = await Notes.findOneAndUpdate({title:req.body.title}, {content:req.body.content})
+        res.status(200).send("Updated")
+    }catch(e){
+        res.status(400).send(e)
+    }
+})
+
 
 module.exports = router
